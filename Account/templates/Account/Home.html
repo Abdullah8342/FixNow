@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,14 +6,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static '../static/Account/style.css' %}">
 </head>
 
 <body>
     <div class="container">
+        {% if request.user.is_authenticated %}
         <h1>Welcome to Home Page!</h1>
         <p>You are successfully logged in.</p>
-        <a href="./Login.html" class="logout-btn">Logout</a>
+        {% else %}
+        
+        <a href="{% url 'Login' %}" class="logout">Login Please</a>
+        {% endif %}
+        <form action="{% url 'Logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
     </div>
 </body>
 

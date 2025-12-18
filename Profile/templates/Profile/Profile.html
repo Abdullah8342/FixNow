@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FixNow | Service Provider Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static './Profile/Style.css' %}">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <div class="navbar">
+        <div class="logo">
+            🔧 <span>FixNow</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="{% url 'Home' %}">Home</a>
+            <a href="#">Search Results</a>
+            <a href="#" class="active">Service Provider Profiles</a>
+            <a href="#">Booking</a>
+            <a href="#">User Dashboard</a>
+        </div>
+    </div>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <div class="container">
+
+        <!-- LEFT PROFILE -->
+        <div class="profile-card">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2" alt="Profile">
+            <h2>John Smith</h2>
+            <p>
+                With over 10 years of experience in plumbing, John is dedicated to
+                providing the best service to his customers, ensuring quality and reliability.
+            </p>
+        </div>
+
+        <!-- RIGHT DETAILS -->
+        <div>
+
+            <!-- Services -->
+            <h3>Services Offered</h3>
+            <div class="service-box">General Plumbing</div>
+            <div class="service-box">Emergency Repairs</div>
+            <div class="service-box">Pipe Installation</div>
+
+            <!-- Reviews -->
+            <h3 style="margin-top:30px;">Customer Reviews</h3>
+            <div class="review">"John was prompt and professional. Highly recommend!" - Emily R.</div>
+            <div class="review">"Great service and very knowledgeable. Will hire again!" - Michael T.</div>
+
+            <!-- Rating -->
+            <h3 style="margin-top:30px;">Average Rating</h3>
+            <div class="rating">
+                <div class="bar">
+                    <span>5</span>
+                    <div class="progress">
+                        <div style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="bar">
+                    <span>4</span>
+                    <div class="progress">
+                        <div style="width: 50%"></div>
+                    </div>
+                </div>
+                <div class="bar">
+                    <span>3</span>
+                    <div class="progress">
+                        <div style="width: 20%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="actions">
+                <button onclick="contact()">Contact</button>
+                <button onclick="book()">Book Now</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <div>© 2023 FixNow. All rights reserved.</div>
+        <div>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact Us</a>
+        </div>
+    </footer>
+
+    <!-- ================= JS ================= -->
+   
+
+</body>
+
+</html>

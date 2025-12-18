@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FixNow | Create Service Provider Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static './Profile/Profile-Form.css' %}">
+</head>
+
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <div class="navbar">
+        <div class="logo">🔧 FixNow</div>
+    </div>
+
+    <!-- ===== FORM ===== -->
+    <form class="form-container" method="post" action="">
+        {% csrf_token %}
+        <h2>Service Provider Profile Form</h2>
+
+        <!-- Basic Info -->
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" name="" placeholder="John Smith" required>
+        </div>
+
+        <div class="form-group">
+            <label>Profile Image URL</label>
+            <input type="url" placeholder="https://example.com/profile.jpg">
+        </div>
+
+        <div class="form-group">
+            <label>About / Description</label>
+            <textarea placeholder="With over 10 years of experience in plumbing..."></textarea>
+        </div>
+
+        <!-- Services -->
+        <h2>Services Offered</h2>
+
+        <div id="services">
+            <div class="service-input">
+                <input type="text" placeholder="General Plumbing">
+            </div>
+            <div class="service-input">
+                <input type="text" placeholder="Emergency Repairs">
+            </div>
+            <div class="service-input">
+                <input type="text" placeholder="Pipe Installation">
+            </div>
+        </div>
+
+        <button class="add-btn" onclick="addService()">+ Add Service</button>
+
+        <!-- Reviews -->
+        <h2>Customer Reviews</h2>
+
+        <div class="review-box">
+            <input type="text" placeholder='"Great service!" - Emily R.'>
+        </div>
+
+        <div class="review-box">
+            <input type="text" placeholder='"Very professional!" - Michael T.'>
+        </div>
+
+        <!-- Ratings -->
+        <h2>Average Rating</h2>
+
+        <div class="form-group">
+            <label>5 Star (%)</label>
+            <input type="number" placeholder="80">
+        </div>
+
+        <div class="form-group">
+            <label>4 Star (%)</label>
+            <input type="number" placeholder="50">
+        </div>
+
+        <div class="form-group">
+            <label>3 Star (%)</label>
+            <input type="number" placeholder="20">
+        </div>
+
+        <button class="submit-btn" onclick="submitProfile()">Save Profile</button>
+    </form>
+
+</body>
+
+</html>

@@ -12,16 +12,16 @@
 
 <body>
     <div class="container">
-        <form id="loginForm">
+        <form id="loginForm" action="" method="post">
+            {% csrf_token %}
             <h2>Login</h2>
-            <input type="username" id="loginUsername" placeholder="Username" required>
-            <input type="password" id="loginPassword" placeholder="Password" required>
+            <input type="username" id="loginUsername" name="loginUsername" placeholder="Username" required>
+            <input type="password" id="loginPassword" name="loginPassword" placeholder="Password" required>
             <button type="submit">Login</button>
             <p>Don't have an account? <a href="{% url 'Signup' %}">Sign Up</a></p>
             <p><a href="{% url 'PasswordReset' %}">Forgot Password?</a></p>
         </form>
     </div>
-    <script src="./Script.js"></script>
 </body>
 
 </html>
