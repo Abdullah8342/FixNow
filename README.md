@@ -1,18 +1,19 @@
 # FixNow - Professional Service Booking Platform
 
-A comprehensive Django-based backend API for a professional service booking platform that connects service providers with customers seeking home services.
+A comprehensive full-stack service booking platform with React/Vite frontend and Django REST API backend. Connects service providers with customers seeking professional home services.
 
 ## 📋 Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Configuration](#configuration)
 - [Running the Application](#running-the-application)
+- [Backend Setup](#backend-setup)
+- [Frontend Setup](#frontend-setup)
 - [API Documentation](#api-documentation)
-- [Project Structure](#project-structure)
 - [Database](#database)
 - [Authentication](#authentication)
 - [Contributing](#contributing)
@@ -20,7 +21,7 @@ A comprehensive Django-based backend API for a professional service booking plat
 
 ## 🎯 Overview
 
-FixNow is a modern service booking platform built with Django and Django REST Framework. It provides robust backend APIs for managing user accounts, service listings, bookings, reviews, and helper services. The platform supports real-time notifications using Celery and Redis.
+FixNow is a modern, full-stack service booking platform designed to connect professional service providers with customers. It features a React/Vite-based responsive frontend and a robust Django REST API backend with Celery for async operations.
 
 ## ✨ Features
 
@@ -37,9 +38,19 @@ FixNow is a modern service booking platform built with Django and Django REST Fr
 
 ## 🛠️ Tech Stack
 
+### Frontend
 | Component | Technology |
 |-----------|-----------|
-| **Backend Framework** | Django 6.0.3 |
+| **Framework** | React 18+ |
+| **Build Tool** | Vite 8.0+ |
+| **Styling** | CSS Modules & TailwindCSS |
+| **HTTP Client** | Axios |
+| **State Management** | React Context API |
+
+### Backend
+| Component | Technology |
+|-----------|-----------|
+| **Framework** | Django 6.0.3 |
 | **REST API** | Django REST Framework 3.16.1 |
 | **Authentication** | JWT (djangorestframework-simplejwt 5.5.1) |
 | **Task Queue** | Celery 5.6.2 |
@@ -68,65 +79,114 @@ git clone https://github.com/Abdullah8342/FixNow.git
 cd FixNow
 ```
 
-### Step 2: Create Virtual Environment
+### Step 2: Setup Backend
 
 ```bash
+cd server
+
+# Create virtual environment
 python3 -m venv venv
-```
 
-### Step 3: Activate Virtual Environment
+# Activate virtual environment
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-**On Linux/macOS:**
-```bash
-source venv/bin/activate
-```
-
-**On Windows:**
-```bash
-venv\Scripts\activate
-```
-
-### Step 4: Install Dependencies
-
-```bash
+# Install dependencies
 pip install -r requirements.txt
-```
 
-### Step 5: Apply Migrations
-
-```bash
+# Apply migrations
 python manage.py migrate
-```
 
-### Step 6: Create Superuser
-
-```bash
+# Create superuser (optional)
 python manage.py createsuperuser
 ```
 
-Follow the prompts to create an admin account.
-
-## ⚙️ Configuration
-
-### Environment Variables
-
-Create a `.env` file in the project root (if needed for production):
-
-```env
-DEBUG=True
-SECRET_KEY=your-secret-key-here
-ALLOWED_HOSTS=localhost,127.0.0.1
-DATABASE_URL=sqlite:///db.sqlite3
-REDIS_URL=redis://localhost:6379/0
-```
-
-### Database Setup
-
-The project uses SQLite by default. For development:
+### Step 3: Setup Frontend
 
 ```bash
+# From root directory, go to client
+cd client
+
+# Install dependencies
+npm install
+
+# Build the project (optional)
+npm run build
+```
+
+### Step 4: Install Prerequisites
+
+Ensure you have:
+- Python 3.8 or higher
+- Node.js 16.x or higher
+- npm or yarn
+- Git
+- Redis (for Celery, optional for development)
+
+## ▶️ Running the Application
+
+### Backend Setup
+
+Open terminal 1 and run:
+
+```bash
+cd server
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+python manage.py runserver
+```
+
+Backend API will be available at: **http://localhost:8000/**
+
+### Frontend Setup
+
+Open terminal 2 and run:
+
+```bash
+cd client
+npm run dev
+```
+
+Frontend will be available at: **http://localhost:5173/**
+
+### Optional: Celery Worker
+
+For async tasks, open terminal 3:
+
+```bash
+cd server
+source venv/bin/activate
+celery -A FixNow worker -l info
+```
+
+### Optional: Celery Beat
+
+For scheduled tasks, open terminal 4:
+
+```bash
+cd server
+source venv/bin/activate
+celery -A FixNow beat -l info
+```
+
+## 🔧 Backend Setup
+
+### Django Migrations
+
+```bash
+cd server
+source venv/bin/activate
+python manage.py makemigrations
 python manage.py migrate
 ```
+
+### Create Admin User
+
+```bash
+cd server
+source venv/bin/activate
+python manage.py createsuperuser
+```
+
+Access admin panel at: **http://localhost:8000/admin/**
 
 ### Static Files
 
@@ -134,124 +194,105 @@ python manage.py migrate
 python manage.py collectstatic
 ```
 
-## ▶️ Running the Application
+## 🎨 Frontend Setup
+
+### Build for Production
+
+```bash
+cd client
+npm run build
+```
+
+Output will be in the `dist/` folder.
 
 ### Development Server
 
 ```bash
-# With virtual environment activated
-python manage.py runserver
+cd client
+npm run dev
 ```
 
-The API will be available at `http://localhost:8000/`
-
-### Running Celery (for async tasks)
-
-In a separate terminal with activated venv:
+### Code Quality
 
 ```bash
-celery -A FixNow worker -l info
-```
-
-### Running Celery Beat (for scheduled tasks)
-
-In another separate terminal:
-
-```bash
-celery -A FixNow beat -l info
+cd client
+npm run lint
 ```
 
 ## 📚 API Documentation
 
-The API endpoints are organized by module:
+The backend API endpoints are organized by module:
 
-### Core Modules
+### Core Endpoints
 
 - **Accounts** (`/api/accounts/`) - User authentication and management
 - **Service** (`/api/service/`) - Service listings and management
 - **Booking** (`/api/booking/`) - Booking management
 - **Profile** (`/api/profile/`) - User profiles
-- **Reviews** (`/api/reviews/`) - Review and rating system
-- **HelperServices** (`/api/helper-services/`) - Additional services
-- **Hire** (`/api/hire/`) - Hiring management
+- **Review** (`/api/review/`) - Review and rating system
+- **Helper** (`/api/helper/`) - Helper services
 
-### Admin Interface
+### Admin Panel
 
-Access the Django admin panel at:
-```
-http://localhost:8000/admin/
-```
+Access Django admin at: **http://localhost:8000/admin/**
 
-Login with the superuser credentials created during setup.
+### API Base URL
+
+- Development: `http://localhost:8000/api/`
 
 ## 📁 Project Structure
 
 ```
 FixNow/
-├── Account/                    # User account management
-│   ├── models.py
-│   ├── serializers.py
-│   ├── views.py
-│   ├── urls.py
-│   └── ...
-├── Service/                    # Service listings
-│   ├── models.py
-│   ├── serializers.py
-│   ├── views.py
-│   ├── urls.py
-│   └── ...
-├── Booking/                    # Booking management
-│   ├── models.py
-│   ├── serializers.py
-│   ├── views.py
-│   ├── urls.py
-│   └── ...
-├── Profile/                    # User profiles
-│   ├── models.py
-│   ├── serializers.py
-│   ├── views.py
-│   ├── urls.py
-│   └── ...
-├── Reviews/                    # Review system
-│   ├── models.py
-│   ├── serializers.py
-│   ├── views.py
-│   ├── urls.py
-│   └── ...
-├── HelperServices/             # Helper services
-│   ├── models.py
-│   ├── serializers.py
-│   ├── views.py
-│   ├── urls.py
-│   └── ...
-├── Hire/                       # Hiring system
-│   ├── models.py
-│   ├── serializers.py
-│   ├── views.py
-│   ├── urls.py
-│   └── ...
-├── FixNow/                     # Main project settings
-│   ├── settings.py
-│   ├── urls.py
-│   ├── wsgi.py
-│   ├── asgi.py
-│   ├── celery.py
-│   └── __init__.py
-├── manage.py                   # Django management script
-├── requirements.txt            # Python dependencies
-├── db.sqlite3                  # Development database
-└── README.md                   # This file
+├── client/                          # React/Vite Frontend
+│   ├── src/
+│   │   ├── components/              # Reusable React components
+│   │   ├── context/                 # Context API providers
+│   │   ├── pages/                   # Page components
+│   │   ├── services/                # API service calls
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── public/                      # Static assets
+│   ├── dist/                        # Production build
+│   ├── node_modules/                # Frontend dependencies
+│   ├── package.json
+│   ├── vite.config.js
+│   └── README.md
+│
+├── server/                          # Django Backend
+│   ├── Accounts/                    # User management app
+│   ├── Service/                     # Service listings app
+│   ├── Booking/                     # Booking management app
+│   ├── Profile/                     # User profiles app
+│   ├── Review/                      # Reviews & ratings app
+│   ├── Helper/                      # Helper services app
+│   ├── FixNow/                      # Django settings
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   ├── wsgi.py
+│   │   ├── asgi.py
+│   │   └── celery.py
+│   ├── venv/                        # Backend virtual environment
+│   ├── manage.py
+│   ├── db.sqlite3
+│   ├── requirements.txt
+│   └── README.md
+│
+├── .git/                            # Git repository
+├── .gitignore
+├── LICENSE
+└── README.md                        # This file
 ```
 
 ## 💾 Database
 
-The project uses SQLite for development. Database file: `db.sqlite3`
+SQLite is used by default for development. Database file: `server/db.sqlite3`
 
 ### Making Migrations
 
-When you modify models:
-
 ```bash
+cd server
+source venv/bin/activate
 python manage.py makemigrations
 python manage.py migrate
 ```
@@ -259,6 +300,7 @@ python manage.py migrate
 ### Resetting Database (Development Only)
 
 ```bash
+cd server
 rm db.sqlite3
 python manage.py migrate
 python manage.py createsuperuser
@@ -266,20 +308,14 @@ python manage.py createsuperuser
 
 ## 🔐 Authentication
 
-The project uses JWT (JSON Web Tokens) for API authentication:
-
-### Login Endpoint
-
-```
-POST /api/accounts/login/
-```
+JWT (JSON Web Tokens) are used for API authentication.
 
 ### Getting Access Token
 
 ```bash
 curl -X POST http://localhost:8000/api/accounts/token/ \
   -H "Content-Type: application/json" \
-  -d '{"username": "user", "password": "pass"}'
+  -d '{"username": "user", "password": "password"}'
 ```
 
 ### Using Token in Requests
@@ -304,14 +340,19 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 For issues and questions:
-- Create an issue on GitHub
-- Contact: [project maintainer contact info]
+- Create an issue on GitHub: https://github.com/Abdullah8342/FixNow/issues
+- Contact project maintainer
 
 ## 🔄 Version History
 
-- **v1.0.0** - Initial release with core features
+- **v1.0.0** - Initial release with full-stack implementation
+  - Backend: Django REST API with Celery/Redis
+  - Frontend: React/Vite responsive SPA
+  - Features: User authentication, services, bookings, reviews, ratings
+  - Both client and server fully functional and tested
 
 ---
 
 **Last Updated**: June 2026  
-**Status**: Active Development
+**Status**: Active Development & Fully Functional  
+**Deployment Status**: Ready for Testing

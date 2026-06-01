@@ -1,11 +1,10 @@
-# Virtual Environments
-venv/
-env/
-ENV/
-.venv
-.ENV
+# Backend - Python Virtual Environments
+server/venv/
+server/env/
+server/ENV/
+server/.venv
 
-# Python
+# Backend - Python
 __pycache__/
 *.py[cod]
 *$py.class
@@ -13,7 +12,6 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
@@ -28,14 +26,21 @@ wheels/
 *.egg
 MANIFEST
 
-# Django
+# Backend - Django
 *.log
 local_settings.py
-/media
-/staticfiles
-db.sqlite3
+server/media/
+server/staticfiles/
+server/db.sqlite3
 *.sqlite
 *.sqlite3
+
+# Frontend - Node
+client/node_modules/
+client/dist/
+npm-debug.log
+yarn-error.log
+client/package-lock.json
 
 # IDE
 .vscode/
@@ -59,6 +64,7 @@ Thumbs.db
 .coverage
 .pytest_cache/
 htmlcov/
+client/.coverage
 
 # Celery
 celerybeat-schedule
@@ -70,6 +76,5 @@ dump.rdb
 
 # Misc
 .cache/
-node_modules/
-npm-debug.log
-yarn-error.log
+*.tmp
+.DS_Store

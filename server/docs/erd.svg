@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1420" height="920" viewBox="0 0 1420 920">
+  <defs>
+    <style>
+      .title { font: 700 28px Arial, sans-serif; fill: #173d3f; }
+      .entity { fill: #f9fcfc; stroke: #2f5f63; stroke-width: 2; }
+      .header { fill: #dcefed; stroke: #2f5f63; stroke-width: 2; }
+      .name { font: 700 20px Arial, sans-serif; fill: #173d3f; }
+      .field { font: 15px Arial, sans-serif; fill: #244b50; }
+      .note { font: 14px Arial, sans-serif; fill: #4d666a; }
+      .line { stroke: #2f5f63; stroke-width: 3; fill: none; }
+      .tag { font: 14px Arial, sans-serif; fill: #173d3f; font-weight: 700; }
+    </style>
+  </defs>
+
+  <text x="60" y="55" class="title">FixNow Entity Relationship Diagram</text>
+
+  <g transform="translate(60,110)">
+    <rect width="280" height="200" class="entity" rx="18" ry="18" />
+    <rect width="280" height="48" class="header" rx="18" ry="18" />
+    <text x="20" y="31" class="name">User</text>
+    <text x="20" y="76" class="field">PK id</text>
+    <text x="20" y="104" class="field">email</text>
+    <text x="20" y="132" class="field">first_name</text>
+    <text x="20" y="160" class="field">last_name</text>
+    <text x="20" y="188" class="field">roll, is_verified</text>
+  </g>
+
+  <g transform="translate(430,110)">
+    <rect width="280" height="170" class="entity" rx="18" ry="18" />
+    <rect width="280" height="48" class="header" rx="18" ry="18" />
+    <text x="20" y="31" class="name">Profile</text>
+    <text x="20" y="76" class="field">PK id</text>
+    <text x="20" y="104" class="field">FK user_id (unique)</text>
+    <text x="20" y="132" class="field">profile_picture</text>
+    <text x="20" y="160" class="field">phone</text>
+  </g>
+
+  <g transform="translate(60,390)">
+    <rect width="280" height="170" class="entity" rx="18" ry="18" />
+    <rect width="280" height="48" class="header" rx="18" ry="18" />
+    <text x="20" y="31" class="name">Service</text>
+    <text x="20" y="76" class="field">PK id</text>
+    <text x="20" y="104" class="field">name</text>
+    <text x="20" y="132" class="field">description</text>
+  </g>
+
+  <g transform="translate(430,360)">
+    <rect width="320" height="230" class="entity" rx="18" ry="18" />
+    <rect width="320" height="48" class="header" rx="18" ry="18" />
+    <text x="20" y="31" class="name">HelperService</text>
+    <text x="20" y="76" class="field">PK id</text>
+    <text x="20" y="104" class="field">FK user_id</text>
+    <text x="20" y="132" class="field">FK service_id</text>
+    <text x="20" y="160" class="field">price</text>
+    <text x="20" y="188" class="field">experience_year</text>
+    <text x="20" y="216" class="field">is_available, timestamps</text>
+  </g>
+
+  <g transform="translate(860,360)">
+    <rect width="280" height="170" class="entity" rx="18" ry="18" />
+    <rect width="280" height="48" class="header" rx="18" ry="18" />
+    <text x="20" y="31" class="name">Location</text>
+    <text x="20" y="76" class="field">PK id</text>
+    <text x="20" y="104" class="field">country</text>
+    <text x="20" y="132" class="field">city</text>
+    <text x="20" y="160" class="field">area</text>
+  </g>
+
+  <g transform="translate(430,680)">
+    <rect width="320" height="190" class="entity" rx="18" ry="18" />
+    <rect width="320" height="48" class="header" rx="18" ry="18" />
+    <text x="20" y="31" class="name">Booking</text>
+    <text x="20" y="76" class="field">PK id</text>
+    <text x="20" y="104" class="field">FK user_id</text>
+    <text x="20" y="132" class="field">FK helper_service_id</text>
+    <text x="20" y="160" class="field">status</text>
+    <text x="20" y="188" class="field">scheduled_at, timestamps</text>
+  </g>
+
+  <g transform="translate(900,680)">
+    <rect width="280" height="190" class="entity" rx="18" ry="18" />
+    <rect width="280" height="48" class="header" rx="18" ry="18" />
+    <text x="20" y="31" class="name">Review</text>
+    <text x="20" y="76" class="field">PK id</text>
+    <text x="20" y="104" class="field">FK user_id</text>
+    <text x="20" y="132" class="field">FK booking_id</text>
+    <text x="20" y="160" class="field">rating</text>
+    <text x="20" y="188" class="field">comment, created_at</text>
+  </g>
+
+  <line x1="340" y1="190" x2="430" y2="190" class="line" />
+  <text x="362" y="176" class="tag">1</text>
+  <text x="405" y="176" class="tag">1</text>
+
+  <line x1="200" y1="310" x2="200" y2="390" class="line" />
+  <text x="212" y="340" class="tag">1</text>
+  <text x="212" y="382" class="tag">N</text>
+
+  <line x1="340" y1="470" x2="430" y2="470" class="line" />
+  <text x="362" y="456" class="tag">1</text>
+  <text x="405" y="456" class="tag">N</text>
+
+  <line x1="200" y1="310" x2="200" y2="775" class="line" />
+  <line x1="200" y1="775" x2="430" y2="775" class="line" />
+  <text x="212" y="760" class="tag">1</text>
+  <text x="405" y="760" class="tag">N</text>
+
+  <line x1="200" y1="310" x2="200" y2="775" class="line" />
+  <line x1="200" y1="775" x2="900" y2="775" class="line" />
+  <text x="875" y="760" class="tag">N</text>
+
+  <line x1="750" y1="470" x2="860" y2="470" class="line" />
+  <text x="780" y="456" class="tag">N</text>
+  <text x="835" y="456" class="tag">N</text>
+  <text x="775" y="495" class="note">many-to-many</text>
+
+  <line x1="590" y1="590" x2="590" y2="680" class="line" />
+  <text x="602" y="628" class="tag">1</text>
+  <text x="602" y="670" class="tag">N</text>
+
+  <line x1="750" y1="775" x2="900" y2="775" class="line" />
+  <text x="785" y="760" class="tag">1</text>
+  <text x="875" y="760" class="tag">0..1</text>
+
+  <text x="60" y="900" class="note">Note: the one-review-per-booking rule is enforced in validation logic, not by a database unique constraint.</text>
+</svg>

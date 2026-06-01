@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <defs>
+    <style>
+      .title { font: 700 28px Arial, sans-serif; fill: #12343b; }
+      .label { font: 700 20px Arial, sans-serif; fill: #12343b; }
+      .text { font: 16px Arial, sans-serif; fill: #274c54; }
+      .small { font: 14px Arial, sans-serif; fill: #48656b; }
+      .box { fill: #f6fbfb; stroke: #2c5d63; stroke-width: 2; rx: 18; ry: 18; }
+      .accent { fill: #e8f4f1; stroke: #2c5d63; stroke-width: 2; rx: 18; ry: 18; }
+      .external { fill: #fff7ed; stroke: #9a4d16; stroke-width: 2; rx: 18; ry: 18; }
+      .arrow { stroke: #2c5d63; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+      .arrow-warm { stroke: #9a4d16; stroke-width: 3; fill: none; marker-end: url(#arrowheadWarm); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2c5d63" />
+    </marker>
+    <marker id="arrowheadWarm" markerWidth="10" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9a4d16" />
+    </marker>
+  </defs>
+
+  <text x="60" y="55" class="title">FixNow API Architecture</text>
+
+  <rect x="60" y="110" width="220" height="120" class="accent" />
+  <text x="95" y="155" class="label">Clients</text>
+  <text x="95" y="188" class="text">Web UI / mobile client</text>
+  <text x="95" y="214" class="small">JWT-authenticated requests</text>
+
+  <rect x="360" y="90" width="460" height="300" class="box" />
+  <text x="390" y="135" class="label">Django REST API</text>
+  <text x="390" y="172" class="text">Accounts, Profile, Service, Helper, Booking, Review</text>
+  <text x="390" y="200" class="small">Role-aware permissions, serializer validation, booking rules</text>
+
+  <rect x="390" y="235" width="180" height="110" class="accent" />
+  <text x="420" y="275" class="label">Auth Layer</text>
+  <text x="420" y="305" class="small">Custom user model</text>
+  <text x="420" y="328" class="small">JWT + OTP workflows</text>
+
+  <rect x="605" y="235" width="180" height="110" class="accent" />
+  <text x="630" y="275" class="label">Domain Layer</text>
+  <text x="630" y="305" class="small">Helper listings</text>
+  <text x="630" y="328" class="small">Bookings and reviews</text>
+
+  <rect x="910" y="110" width="220" height="120" class="box" />
+  <text x="955" y="155" class="label">SQLite</text>
+  <text x="955" y="188" class="text">Profiles, services, bookings, reviews</text>
+  <text x="955" y="214" class="small">Default development database</text>
+
+  <rect x="910" y="280" width="220" height="120" class="box" />
+  <text x="955" y="325" class="label">Redis</text>
+  <text x="955" y="358" class="text">Celery broker/result backend</text>
+  <text x="955" y="384" class="small">Optional cache backend for OTP storage</text>
+
+  <rect x="360" y="470" width="240" height="120" class="box" />
+  <text x="410" y="515" class="label">Celery Worker</text>
+  <text x="410" y="548" class="text">Processes email tasks</text>
+  <text x="410" y="574" class="small">Keeps OTP delivery off the request thread</text>
+
+  <rect x="700" y="470" width="240" height="120" class="external" />
+  <text x="760" y="515" class="label">SMTP Provider</text>
+  <text x="760" y="548" class="text">Gmail or another mail relay</text>
+  <text x="760" y="574" class="small">Receives outbound OTP email jobs</text>
+
+  <line x1="280" y1="170" x2="360" y2="170" class="arrow" />
+  <text x="295" y="155" class="small">HTTP</text>
+
+  <line x1="820" y1="170" x2="910" y2="170" class="arrow" />
+  <text x="840" y="155" class="small">ORM</text>
+
+  <line x1="820" y1="330" x2="910" y2="330" class="arrow" />
+  <text x="835" y="315" class="small">Broker / cache</text>
+
+  <line x1="500" y1="390" x2="500" y2="470" class="arrow" />
+  <text x="515" y="435" class="small">Async task dispatch</text>
+
+  <line x1="600" y1="530" x2="700" y2="530" class="arrow-warm" />
+  <text x="620" y="515" class="small">send_mail()</text>
+
+  <line x1="910" y1="340" x2="600" y2="530" class="arrow" />
+  <text x="720" y="420" class="small">Queue consumption</text>
+</svg>
